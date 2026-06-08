@@ -639,6 +639,14 @@
     [
       "dcb28434-17ba-40ef-be6b-aadd5940b71c",
       "Root"
+    ],
+    [
+      "9e33d8a0-c61c-48d4-8ae9-7361926b6fe5",
+      "CANBus Module"
+    ],
+    [
+      "907f5493-84a3-4cd1-b33d-125e317942ed",
+      "BNO080 Connector"
     ]
   ],
   "text_variables": {}

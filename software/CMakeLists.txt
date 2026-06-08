@@ -1,19 +1,32 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.13)
 
-include(pico-sdk/pico_sdk_init.cmake)
+include($ENV{PICO_SDK_PATH}/external/pico_sdk_import.cmake)
 
-project(PicoTemplate)
+project(pico_test C CXX ASM)
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 
 pico_sdk_init()
 
-add_executable(PicoTemplate main.cpp)
+add_subdirectory(lib/BNO08x)
 
-# Link with the pico stdlib
-target_link_libraries(PicoTemplate pico_stdlib hardware_adc)
 
-# Create map/bin/hex/uf2 files
-pico_add_extra_outputs(PicoTemplate)
+add_executable(pico_test
+    src/main.cpp
+    src/BNO080.cpp
+    src/orientation.cpp
+)
 
-# Enable USB serial
-pico_enable_stdio_usb(PicoTemplate 1)
-pico_enable_stdio_uart(PicoTemplate 0)
+target_include_directories(pico_test PRIVATE
+    ${CMAKE_CURRENT_LIST_DIR}/include
+)
+
+target_link_libraries(pico_test
+    pico_stdlib
+    hardware_i2c
+    BNO08x_Pico_Library
+)
+
+pico_add_extra_outputs(pico_test)
