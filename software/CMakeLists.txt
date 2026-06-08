@@ -17,6 +17,8 @@ add_executable(pico_test
     src/main.cpp
     src/BNO080.cpp
     src/orientation.cpp
+    src/MCP2515.cpp
+    src/spi.cpp
 )
 
 target_include_directories(pico_test PRIVATE
@@ -26,6 +28,7 @@ target_include_directories(pico_test PRIVATE
 target_link_libraries(pico_test
     pico_stdlib
     hardware_i2c
+    hardware_spi
     BNO08x_Pico_Library
 )
 
