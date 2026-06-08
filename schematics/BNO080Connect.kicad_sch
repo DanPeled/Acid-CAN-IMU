@@ -968,7 +968,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinSocket_1.00mm:PinSocket_1x10_P1.00mm_Vertical"
 			(at 148.59 92.71 0)
 			(effects
 				(font
