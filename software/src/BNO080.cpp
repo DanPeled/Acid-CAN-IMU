@@ -1,12 +1,13 @@
 #include "BNO080.hpp"
-#include "bno08x.h"
 #include "orientation.hpp"
-#include "utils.h"
-#include <hardware/i2c.h>
+#include <utils.h>
 
 using namespace acid;
 
 i2c_inst_t *i2c_port0;
+
+BNO080::BNO080(const Orientation &initialOrientation)
+    : m_orientation(initialOrientation) {};
 
 void BNO080::Scan() {
   initI2C(i2c_port0, false);

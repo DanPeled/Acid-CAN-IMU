@@ -1,9 +1,12 @@
 #pragma once
-#include "bno08x.h"
 #include "orientation.hpp"
+#include <bno08x.h>
 
 namespace acid {
 class BNO080 {
+public:
+  BNO080(const Orientation &initialOrientation);
+
 public:
   void Scan();
   void Update();
