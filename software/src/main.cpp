@@ -1,15 +1,17 @@
 #include "BNO080.hpp"
 #include "orientation.hpp"
+#include "pico.hpp"
 #include <cstdio>
 
 int main() {
-  stdio_init_all();
-  acid::BNO080 imu;
+  acid::pico::Init();
+  acid::BNO080 imu{Orientation::Zero};
 
   imu.Scan();
 
   while (true) {
-    auto o = imu.GetOrientation();
-    printf("Yaw: %f, Pitch: %f, Roll: %f\n", o.yaw, o.pitch, o.roll);
+    imu.Update();
+    auto q = imu.GetQuaternion();
+    printf("X: %f, Y: %f, Z: %f, W: %f", q.x, q.y, q.z, q.w);
   }
 }

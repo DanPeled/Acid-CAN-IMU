@@ -29,6 +29,7 @@ target_link_libraries(pico_test
     pico_stdlib
     hardware_i2c
     hardware_spi
+    hardware_adc
     BNO08x_Pico_Library
 )
 
