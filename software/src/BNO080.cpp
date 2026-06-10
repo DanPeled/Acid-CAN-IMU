@@ -22,26 +22,23 @@ void BNO080::Scan() {
   m_imu.enableRotationVector();
 }
 
-bool BNO080::Poll() {
+bool BNO080::Update() {
   if (!m_imu.getSensorEvent())
     return false;
+
   if (m_imu.getSensorEventID() != SENSOR_REPORTID_ROTATION_VECTOR)
     return false;
 
+  m_quaternion = {.x = m_imu.getGameQuatI(),
+                  .y = m_imu.getGameQuatJ(),
+                  .z = m_imu.getGameQuatK(),
+                  .w = m_imu.getGameQuatReal()};
+
+  m_quatRadianAccuracy = m_imu.getQuatRadianAccuracy();
+  m_accelAccuracy = m_imu.getAccelAccuracy();
+  m_linAccelAccuracy = m_imu.getLinAccelAccuracy();
+
   return true;
-}
-
-void BNO080::Update() {
-  if (Poll()) {
-    m_quaternion = {.x = m_imu.getQuatI(),
-                    .y = m_imu.getQuatJ(),
-                    .z = m_imu.getQuatK(),
-                    .w = m_imu.getQuatReal()};
-
-    m_quatRadianAccuracy = m_imu.getQuatRadianAccuracy();
-    m_accelAccuracy = m_imu.getAccelAccuracy();
-    m_linAccelAccuracy = m_imu.getLinAccelAccuracy();
-  }
 }
 
 bool BNO080::Reset() { return m_imu.softReset(); }

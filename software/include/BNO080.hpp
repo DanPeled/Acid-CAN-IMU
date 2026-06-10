@@ -10,7 +10,7 @@ public:
 
 public:
   void Scan();
-  void Update();
+  bool Update();
   bool Reset();
 
 public:
@@ -18,9 +18,6 @@ public:
   float GetQuatRadianAccuracy() const;
   uint8_t GetAccelAccuracy() const;
   uint8_t GetLinAccelAccuracy() const;
-
-private:
-  bool Poll();
 
 private:
   BNO08x m_imu;

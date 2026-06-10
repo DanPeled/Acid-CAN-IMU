@@ -12,13 +12,12 @@ pico_sdk_init()
 
 add_subdirectory(lib/BNO08x)
 
+file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS
+    ${CMAKE_CURRENT_LIST_DIR}/src/*.cpp
+)
 
 add_executable(pico_test
-    src/main.cpp
-    src/BNO080.cpp
-    src/orientation.cpp
-    src/MCP2515.cpp
-    src/spi.cpp
+  ${SOURCES}
 )
 
 target_include_directories(pico_test PRIVATE
